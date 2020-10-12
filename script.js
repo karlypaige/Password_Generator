@@ -25,23 +25,28 @@ function generatePassword(){
   var alphabet = "abcdefghijklmnopqrstuvwxyz";  //alphabet string to grab random alpha character
   var special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //special character string to grab random special character
 
-  //function found online to test if string only contains numbers
+  //function found online to test if a string contains only numbers; returns 'true' if string is only numbers.
   String.prototype.isNumber = function(){return /^\d+$/.test(this);}  
   
-  //user selects length of password between 8 and 128 characters
+  //user selects length of password between 8 and 128 characters loop will repeat if user selects number outside of range
   while (userLength < 8 || userLength > 128){
+
     userLength = prompt("How many characters will your password be? Please choose a value between 8 and 128.");
+    
     //check that the user has only input numbers
     if (!userLength.isNumber()){
+
       alert("Please only enter numbers.");
-      userLength = 0; //if user enters alphanumeric character then reset the value to zero to repeat the loop.
-    }
+      userLength = 0;     //if user enters alphanumeric character then reset the value to zero to repeat the loop.
+
+    };
+
   };
   
 
   //user selects char types to be used in the password
 
-  var flag = true;   //set flag to begin loop, reset the falg to false once conditions are met
+  var flag = true;       //set flag to begin loop, switch flag to false once conditions are met
   while (flag){
     
     for (i=0; i<charTypes.length; i++){
@@ -51,10 +56,11 @@ function generatePassword(){
       //as user selects char type add it to the user selection array
       if (userInput == true){ 
         userOpts[userOpts.length] = charTypes[i];
-      } 
+      };
 
     };
 
+    //test the condition that at least one char type was selected (array will not be empty)
     if (userOpts.length == 0){
       alert("You must select at least one char type.")
     }
@@ -62,7 +68,7 @@ function generatePassword(){
       flag = false;
     };
 
-  }
+  };
 
   //loop to generate each character of the string that will be the password.
   for (j=0; j<userLength; j++){
@@ -88,8 +94,9 @@ function generatePassword(){
         num = Math.floor((Math.random() * special.length))
         userPassword += special[num];
         break;
-    }
-  }
+    };
+  };
   
   return userPassword;    //return the value we generated
+
 }
