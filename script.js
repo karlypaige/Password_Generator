@@ -22,6 +22,9 @@ function generatePassword(){
   var userLength = 0;     //holds user input. initiated to 0 to start the while loop.
   var userOpts = [];      //empty array to hold user selected char types
   var charTypes = ["Upper case", "Lower case", "Numerical", "Special character"]; //all possible chartypes to choose
+  var alphabet = "abcdefghijklmnopqrstuvwxyz";  //alphabet string to grab random alpha character
+  var special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  console.log("length of special array: " + special + " is length: " + special.length);
 
   //user selects length of password between 8 and 128 characters
   while (userLength < 8 || userLength > 128){
@@ -50,17 +53,19 @@ function generatePassword(){
     //switch statement to generate the character at i position
     switch(userOpts[randIndex]) {
       case "Upper case":
-        userPassword += "A";
+        num = Math.floor((Math.random() * alphabet.length))
+        userPassword += alphabet[num].toUpperCase();
         break;
       case "Lower case":
-        userPassword += "a";
+        num = Math.floor((Math.random() * alphabet.length))
+        userPassword += alphabet[num];
         break;
       case "Numerical":
-        var num = Math.floor((Math.random() * 10));
-        userPassword += "1";
+        userPassword += Math.floor((Math.random() * 10));
         break;
       case "Special character":
-        userPassword += "!";
+        num = Math.floor((Math.random() * special.length))
+        userPassword += special[num];
         break;
     }
   }
