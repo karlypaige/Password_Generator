@@ -40,13 +40,28 @@ function generatePassword(){
   
 
   //user selects char types to be used in the password
-  for (i=0; i<charTypes.length; i++){
-    var userInput = confirm("Please select char types. Do you want to include " + charTypes[i] + "?")
 
-    //as user selects char type add it to the user selection array
-    if (userInput == true){ 
-      userOpts[userOpts.length] = charTypes[i];
+  var flag = true;   //set flag to begin loop, reset the falg to false once conditions are met
+  while (flag){
+    
+    for (i=0; i<charTypes.length; i++){
+      
+      var userInput = confirm("Please select char types. Do you want to include " + charTypes[i] + "?")
+
+      //as user selects char type add it to the user selection array
+      if (userInput == true){ 
+        userOpts[userOpts.length] = charTypes[i];
+      } 
+
+    };
+
+    if (userOpts.length == 0){
+      alert("You must select at least one char type.")
     }
+    else {
+      flag = false;
+    };
+
   }
 
   //loop to generate each character of the string that will be the password.
