@@ -23,12 +23,19 @@ function generatePassword(){
   var userOpts = [];      //empty array to hold user selected char types
   var charTypes = ["Upper case", "Lower case", "Numerical", "Special character"]; //all possible chartypes to choose
   var alphabet = "abcdefghijklmnopqrstuvwxyz";  //alphabet string to grab random alpha character
-  var special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-  console.log("length of special array: " + special + " is length: " + special.length);
+  var special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //special character string to grab random special character
 
+  //function found online to test if string only contains numbers
+  String.prototype.isNumber = function(){return /^\d+$/.test(this);}  
+  
   //user selects length of password between 8 and 128 characters
   while (userLength < 8 || userLength > 128){
     userLength = prompt("How many characters will your password be? Please choose a value between 8 and 128.");
+    //check that the user has only input numbers
+    if (!userLength.isNumber()){
+      alert("Please only enter numbers.");
+      userLength = 0; //if user enters alphanumeric character then reset the value to zero to repeat the loop.
+    }
   };
   
 
@@ -45,10 +52,9 @@ function generatePassword(){
   //loop to generate each character of the string that will be the password.
   for (j=0; j<userLength; j++){
   
-    console.log(j);
     //index number randomly generated to choose character type
     var randIndex = Math.floor((Math.random() * userOpts.length))
-    console.log("random index: " + randIndex);
+    var num = 0;   //variable to hold randomly generated index numbers for switch statement
 
     //switch statement to generate the character at i position
     switch(userOpts[randIndex]) {
@@ -69,6 +75,6 @@ function generatePassword(){
         break;
     }
   }
-  console.log(userPassword);
+  
   return userPassword;    //return the value we generated
 }
