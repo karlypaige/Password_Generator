@@ -3,6 +3,8 @@ Create a secure password based on user criteria entered.
 
 https://karlypaige.github.io/Password_Generator/
 
+![overview-screenshot](assets/images/PasswordGenerator.png)
+
 
 ## User Story
 
